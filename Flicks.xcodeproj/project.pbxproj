@@ -27,7 +27,7 @@
 		0B07A1341D500AA50010B082 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B07A13A1D500B210010B082 /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		0B07A1401D5050BD0010B082 /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
-		0BB3904A1D5154D500A46B63 /* MoviesDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesDetailViewController.swift; sourceTree = "<group>"; };
+		0BB3904A1D5154D500A46B63 /* MoviesDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoviesDetailViewController.swift; path = ../MoviesDetailViewController.swift; sourceTree = "<group>"; };
 		0BB390501D52DD9200A46B63 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		3874667A75FFF088AD36E963 /* Pods_Flicks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flicks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F726348493363B4C94C5FF3B /* Pods-Flicks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flicks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flicks/Pods-Flicks.debug.xcconfig"; sourceTree = "<group>"; };
@@ -49,7 +49,6 @@
 		0B07A11C1D500AA50010B082 = {
 			isa = PBXGroup;
 			children = (
-				0BB3904A1D5154D500A46B63 /* MoviesDetailViewController.swift */,
 				0B07A1271D500AA50010B082 /* Flicks */,
 				0B07A1261D500AA50010B082 /* Products */,
 				7226E94ECD7BB94722EB0891 /* Pods */,
@@ -92,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				0B07A13A1D500B210010B082 /* MoviesViewController.swift */,
+				0BB3904A1D5154D500A46B63 /* MoviesDetailViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

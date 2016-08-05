@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="127" sectionHeaderHeight="28" sectionFooterHeight="28" id="aVK-Yg-eyT">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="522"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -61,10 +61,15 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="imQ-NK-X7Z"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="ymJ-g6-5eT"/>
+                                </connections>
                             </tableView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="nab-6r-Mwv">
                                 <rect key="frame" x="0.0" y="63" width="320" height="505"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="3" minimumInteritemSpacing="3" id="3Rc-tk-6EZ">
                                     <size key="itemSize" width="158" height="200"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -107,6 +112,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <size key="customSize" width="158" height="200"/>
                                         <connections>
                                             <outlet property="posterImage" destination="5pq-dJ-zpW" id="IOn-Db-Dw8"/>
                                             <outlet property="ratingLabel" destination="Bbj-tn-0as" id="34v-hX-S3r"/>
@@ -116,16 +122,38 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" id="PRc-Ri-Bjv">
+                                <rect key="frame" x="119" y="480" width="81" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="cdc-dj-a2Q">
+                                        <rect key="frame" x="6" y="6" width="70" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <gestureRecognizers/>
+                                        <segments>
+                                            <segment title="" image="IconList"/>
+                                            <segment title="" image="IconGrid"/>
+                                        </segments>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="onSelect:" destination="BYZ-38-t0r" eventType="valueChanged" id="INq-b2-i51"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <view contentMode="scaleToFill" id="DcY-WE-1xB">
-                                <rect key="frame" x="2" y="63" width="318" height="26"/>
+                                <rect key="frame" x="0.0" y="63" width="320" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="3oB-hR-5TZ">
-                                        <rect key="frame" x="120" y="0.0" width="32" height="26"/>
+                                        <rect key="frame" x="112" y="8" width="24" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Network Error" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Adl-eu-NBM">
-                                        <rect key="frame" x="154" y="0.0" width="107" height="26"/>
+                                        <rect key="frame" x="139" y="8" width="107" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -137,37 +165,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="cKm-8S-Ma1">
-                        <barButtonItem key="leftBarButtonItem" title="Item" style="done" id="sga-xX-JKG">
-                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="8dX-VH-aPJ">
-                                <rect key="frame" x="16" y="8" width="71" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <segments>
-                                    <segment title="" image="IconList"/>
-                                    <segment title="" image="IconGrid"/>
-                                </segments>
-                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="onSelect:" destination="BYZ-38-t0r" eventType="valueChanged" id="uXc-oB-txR"/>
-                                </connections>
-                            </segmentedControl>
-                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="cKm-8S-Ma1"/>
                     <connections>
                         <outlet property="collectionView" destination="nab-6r-Mwv" id="wkj-p0-6BC"/>
                         <outlet property="connNetworkErrorImage" destination="3oB-hR-5TZ" id="Klu-f1-dDg"/>
                         <outlet property="connStatusBar" destination="DcY-WE-1xB" id="ZoC-Yh-thU"/>
+                        <outlet property="selectorBarView" destination="PRc-Ri-Bjv" id="kJf-eE-Yzf"/>
                         <outlet property="tableView" destination="aVK-Yg-eyT" id="YqC-yV-aF1"/>
-                        <outlet property="viewSelectorControl" destination="8dX-VH-aPJ" id="kPn-8s-rz7"/>
+                        <outlet property="viewSelectorControl" destination="cdc-dj-a2Q" id="oed-sz-qKL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="874" y="-1170"/>
         </scene>
-        <!--Synopsis-->
+        <!--Movies Detail View Controller-->
         <scene sceneID="wtd-qG-a24">
             <objects>
                 <viewController id="kYy-ye-7mK" customClass="MoviesDetailViewController" customModule="Flicks" customModuleProvider="target" sceneMemberID="viewController">
@@ -180,7 +192,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view alpha="0.69999999999999996" contentMode="scaleToFill" id="hDN-a0-eD0">
-                                        <rect key="frame" x="0.0" y="477" width="320" height="455"/>
+                                        <rect key="frame" x="0.0" y="47" width="320" height="455"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UAm-aH-TsO">
@@ -216,7 +228,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="MnY-6K-loB">
-                                                <rect key="frame" x="137" y="406" width="47" height="47"/>
+                                                <rect key="frame" x="137" y="400" width="47" height="47"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <gestureRecognizers/>
                                                 <connections>
@@ -226,15 +238,19 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="SoH-he-EHJ" appends="YES" id="lQU-gA-8eZ"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                     </view>
-                    <navigationItem key="navigationItem" title="Synopsis" id="PvI-Se-5Sc"/>
+                    <navigationItem key="navigationItem" id="PvI-Se-5Sc"/>
                     <connections>
                         <outlet property="detailView" destination="hDN-a0-eD0" id="98C-vn-QVL"/>
                         <outlet property="iconUpArrow" destination="MnY-6K-loB" id="CBz-dt-QMU"/>
@@ -251,8 +267,13 @@
                         <action selector="onTap:" destination="kYy-ye-7mK" id="TwZ-jD-ngw"/>
                     </connections>
                 </tapGestureRecognizer>
+                <pinchGestureRecognizer id="SoH-he-EHJ">
+                    <connections>
+                        <action selector="onPinch:" destination="kYy-ye-7mK" id="Al8-qQ-Oda"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1318" y="-1170"/>
+            <point key="canvasLocation" x="1290" y="-1170"/>
         </scene>
         <!--Now Playing-->
         <scene sceneID="QVk-1W-934">
@@ -260,10 +281,10 @@
                 <navigationController storyboardIdentifier="MoviesNaviController" automaticallyAdjustsScrollViewInsets="NO" id="Idb-bD-5CY" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Now Playing" image="IconNow" id="JqM-G8-n8C"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gLd-MC-P2M">
+                    <navigationBar key="navigationBar" alpha="0.5" contentMode="scaleToFill" id="gLd-MC-P2M">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

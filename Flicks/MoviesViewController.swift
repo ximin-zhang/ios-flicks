@@ -10,15 +10,19 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate {
+class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var connNetworkErrorImage: UIImageView!
     @IBOutlet weak var connStatusBar: UIView!
     @IBOutlet weak var viewSelectorControl: UISegmentedControl!
+    @IBOutlet weak var selectorBarView: UIView!
+
     
     var movies: [NSDictionary]? // To make it optional
+    var filteredMovies: [NSDictionary]? // For search display
     var endpoint: String!
+    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +33,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.delegate = self
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        selectorBarView.layer.shadowColor = UIColor.blackColor().CGColor
+        selectorBarView.layer.shadowOpacity = 1
+        selectorBarView.layer.shadowOffset = CGSizeZero
+        selectorBarView.layer.shadowRadius = 10
         
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
@@ -49,6 +58,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             break;
         }
         
+        // Search bar
+        searchController.searchResultsUpdater = self as? UISearchResultsUpdating
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+        
+        
 
         // Do any additional setup after loading the view.
         self.refreshControlAction(refreshControl)
@@ -61,49 +77,134 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        if let movies = movies{
-            return movies.count
-        }else{
-            return 0
-        }
         
+        if searchController.active && searchController.searchBar.text != ""
+        {
+            if let filteredMovies = filteredMovies
+            {
+                return filteredMovies.count
+            }else{
+                return 0
+            }
+        }else
+        {
+            if let movies = movies
+            {
+                return movies.count
+            }else{
+                return 0
+            }
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
+        var movie: NSDictionary
         
-        let movie = movies![indexPath.row]
+        if searchController.active && searchController.searchBar.text != "" {
+            movie = filteredMovies![indexPath.row]
+        } else {
+            movie = movies![indexPath.row]
+        }
+        
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
         let rating = movie["vote_average"] as! Double
         
         if let posterPath = movie["poster_path"] as? String {
+            /* Without fade in
             let baseUrl = "http://image.tmdb.org/t/p/w342"
             let imageUrl = NSURL(string: baseUrl + posterPath)
             cell.posterView.setImageWithURL(imageUrl!)
+             */
+            
+            // Load image with fade in effect
+            let baseUrl = "http://image.tmdb.org/t/p/w342"
+            let imageUrl = NSURL(string: baseUrl + posterPath)
+            let imageRequest = NSURLRequest(URL: imageUrl!)
+            cell.posterView.setImageWithURLRequest(
+                imageRequest,
+                placeholderImage: nil,
+                success: { (imageRequest, imageResponse, image) -> Void in
+                    
+                    // imageResponse will be nil if the image is cached
+                    if imageResponse != nil {
+                        print("Image was NOT cached, fade in image")
+                        cell.posterView.alpha = 0.0
+                        cell.posterView.image = image
+                        UIView.animateWithDuration(0.3, animations: { () -> Void in
+                            cell.posterView.alpha = 1.0
+                        })
+                    } else {
+                        print("Image was cached so just update the image")
+                        cell.posterView.image = image
+                    }
+                },
+                failure: { (imageRequest, imageResponse, error) -> Void in
+                    // do something for the failure condition
+                    print("Failed in loading")
+            })
         }
         
+        // Text shadow for movie title
         cell.titleLabel.text = title
+        cell.titleLabel.layer.shadowOpacity = 1.0
+        cell.titleLabel.layer.shadowRadius = 0.0
+        cell.titleLabel.layer.shadowOffset = CGSizeMake(0.0, -2.0)
+        
         cell.ratingLabel.text = "Rating: " + String(rating)
         cell.overviewLabel.text = overview
         cell.overviewLabel.sizeToFit()
         cell.backgroundColor = UIColor.clearColor()
+        
+        // deselect cell highlight for selection
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         
         return cell
     }
     
     // Collection View Step 1
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        if let movies = movies{
-            return movies.count
-        }else{
-            return 0
+        
+        if searchController.active && searchController.searchBar.text != ""
+        {
+            if let filteredMovies = filteredMovies
+            {
+                return filteredMovies.count
+            }else{
+                return 0
+            }
+        }else
+        {
+            if let movies = movies
+            {
+                return movies.count
+            }else{
+                return 0
+            }
         }
     }
     
+    
     // Collection View Step 2
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movies!.count
+        if searchController.active && searchController.searchBar.text != ""
+        {
+            if let filteredMovies = filteredMovies
+            {
+                return filteredMovies.count
+            }else{
+                return 0
+            }
+        }else
+        {
+            if let movies = movies
+            {
+                return movies.count
+            }else{
+                return 0
+            }
+        }
     }
     
     // Collection View Step 3
@@ -111,7 +212,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MovieCollectionViewCell", forIndexPath: indexPath) as! MovieCollectionViewCell
         
         // Configure the cell
-        let movie = movies![indexPath.row]
+        var movie: NSDictionary
+        if searchController.active && searchController.searchBar.text != "" {
+            movie = filteredMovies![indexPath.row]
+        } else {
+            movie = movies![indexPath.row]
+        }
+        
         let title = movie["title"] as! String
         // let overview = movie["overview"] as! String
         let rating = movie["vote_average"] as! Double
@@ -154,7 +261,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        var rowIndex: Int
+        
+        let movie: NSDictionary
+        let rowIndex: Int
         
         let viewStyle = viewSelectorControl.selectedSegmentIndex
         switch viewStyle
@@ -162,13 +271,21 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         case 0:
             let cell = sender as! UITableViewCell
             rowIndex = (tableView.indexPathForCell(cell)?.row)!
-            let movie = movies![rowIndex]
+            if searchController.active && searchController.searchBar.text != "" {
+                movie = self.filteredMovies![rowIndex]
+            } else {
+                movie = self.movies![rowIndex]
+            }
             let movieDetailViewController = segue.destinationViewController as! MoviesDetailViewController
             movieDetailViewController.movie = movie
         case 1:
             let cell = sender as! UICollectionViewCell
             rowIndex = (collectionView.indexPathForCell(cell)?.row)!
-            let movie = movies![rowIndex]
+            if searchController.active && searchController.searchBar.text != "" {
+                movie = self.filteredMovies![rowIndex]
+            } else {
+                movie = self.movies![rowIndex]
+            }
             let movieDetailViewController = segue.destinationViewController as! MoviesDetailViewController
             movieDetailViewController.movie = movie
         default:
@@ -182,7 +299,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         // let movieDetailViewController = segue.destinationViewController as! MoviesDetailViewController
         // movieDetailViewController.movie = movie
     }
-    
+   
     @IBAction func onSelect(sender: AnyObject) {
         let viewStyle = viewSelectorControl.selectedSegmentIndex
         switch viewStyle
@@ -271,5 +388,28 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                     }
             });
         task.resume()
+    }
+    
+    
+    // Add for search
+    func filterContentForSearchText(searchText: String, scope: String = "Title") {
+        if movies != nil {
+            self.filteredMovies = self.movies!.filter { movie in
+                return movie["title"]!.lowercaseString.containsString(searchText.lowercaseString)
+            }
+        } else {
+            self.filteredMovies = movies
+        }
+        
+        tableView.reloadData()
+    }
+    
+}
+
+
+// Add for search
+extension MoviesViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
     }
 }
