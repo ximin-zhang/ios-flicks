@@ -9,12 +9,27 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Brightcove-Player-SDK-BCOVPUIResources.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Player.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Flicks.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>youtube-parser.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,7 +42,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>95E73D40D58FA10CD75A3BEAC5E0946F</key>
+		<key>6C6BC3AFD18933E72274F1C05D71065F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A889872122275834EC71D99045228C55</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C1E63A1BF93FD336FEC6B7950AA018F2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C50DB83E57FE17AC0B20771815CF1240</key>
 		<dict>
 			<key>primary</key>
 			<true/>

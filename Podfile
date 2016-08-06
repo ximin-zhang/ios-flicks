@@ -14,4 +14,13 @@ target 'Flicks' do
   # Supress any warnings from Pods we install if you're getting a lot of noise from them
   inhibit_all_warnings!
 
+  # Pods for video
+  pod 'Brightcove-Player-SDK'
+
+  # Pods for Player
+  pod 'Player'
+
+  # Pods for YouTube player
+  pod "youtube-parser"
+
 end

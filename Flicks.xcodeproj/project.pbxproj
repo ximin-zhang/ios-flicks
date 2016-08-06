@@ -13,6 +13,7 @@
 		0B07A1331D500AA50010B082 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B07A1311D500AA50010B082 /* LaunchScreen.storyboard */; };
 		0B07A13B1D500B210010B082 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B07A13A1D500B210010B082 /* MoviesViewController.swift */; };
 		0B07A1411D5050BD0010B082 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B07A1401D5050BD0010B082 /* MovieCell.swift */; };
+		0B43EFCA1D5511D500D765C6 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43EFC91D5511D500D765C6 /* PlayerViewController.swift */; };
 		0BB3904B1D5154D500A46B63 /* MoviesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB3904A1D5154D500A46B63 /* MoviesDetailViewController.swift */; };
 		0BB390511D52DD9200A46B63 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB390501D52DD9200A46B63 /* MovieCollectionViewCell.swift */; };
 		E6F26166915CC11A3A2B720D /* Pods_Flicks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3874667A75FFF088AD36E963 /* Pods_Flicks.framework */; };
@@ -27,6 +28,8 @@
 		0B07A1341D500AA50010B082 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B07A13A1D500B210010B082 /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		0B07A1401D5050BD0010B082 /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		0B43EFC81D5506EB00D765C6 /* Flicks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flicks-Bridging-Header.h"; sourceTree = "<group>"; };
+		0B43EFC91D5511D500D765C6 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		0BB3904A1D5154D500A46B63 /* MoviesDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoviesDetailViewController.swift; path = ../MoviesDetailViewController.swift; sourceTree = "<group>"; };
 		0BB390501D52DD9200A46B63 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		3874667A75FFF088AD36E963 /* Pods_Flicks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flicks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +74,7 @@
 				0B07A13C1D504A070010B082 /* Views */,
 				0B07A1281D500AA50010B082 /* AppDelegate.swift */,
 				0B07A12C1D500AA50010B082 /* Main.storyboard */,
+				0B43EFC81D5506EB00D765C6 /* Flicks-Bridging-Header.h */,
 				0B07A12F1D500AA50010B082 /* Assets.xcassets */,
 				0B07A1311D500AA50010B082 /* LaunchScreen.storyboard */,
 				0B07A1341D500AA50010B082 /* Info.plist */,
@@ -90,6 +94,7 @@
 		0B07A13F1D504A560010B082 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0B43EFC91D5511D500D765C6 /* PlayerViewController.swift */,
 				0B07A13A1D500B210010B082 /* MoviesViewController.swift */,
 				0BB3904A1D5154D500A46B63 /* MoviesDetailViewController.swift */,
 			);
@@ -236,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BB3904B1D5154D500A46B63 /* MoviesDetailViewController.swift in Sources */,
+				0B43EFCA1D5511D500D765C6 /* PlayerViewController.swift in Sources */,
 				0B07A1291D500AA50010B082 /* AppDelegate.swift in Sources */,
 				0BB390511D52DD9200A46B63 /* MovieCollectionViewCell.swift in Sources */,
 				0B07A13B1D500B210010B082 /* MoviesViewController.swift in Sources */,
@@ -357,6 +363,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.airbnb.Flicks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Flicks/Flicks-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -369,6 +376,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.airbnb.Flicks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Flicks/Flicks-Bridging-Header.h";
 			};
 			name = Release;
 		};
