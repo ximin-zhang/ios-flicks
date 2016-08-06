@@ -3,14 +3,14 @@
 //  Flicks
 //
 //  Created by ximin_zhang on 8/1/16.
-//  Copyright © 2016 ximin_zhang. All rights reserved.
+//  Copyright © 2016 ximin_zhmovieDetailViewControllerang. All rights reserved.
 //
 
 import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate {
+class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, BCOVPlaybackControllerDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var connNetworkErrorImage: UIImageView!
@@ -23,6 +23,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     var filteredMovies: [NSDictionary]? // For search display
     var endpoint: String!
     let searchController = UISearchController(searchResultsController: nil)
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +61,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
         // Search bar
-        searchController.searchResultsUpdater = self as? UISearchResultsUpdating
+        searchController.searchResultsUpdater = self as UISearchResultsUpdating
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar

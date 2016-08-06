@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "30463435007E4E0874A8D74BB935D464F3BF40AD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "E347FE568902197079700D971CB08D7E87306E3B" : 0,
+    "30463435007E4E0874A8D74BB935D464F3BF40AD" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "A17C15F9-E2D5-46FC-AEFE-008BB632835D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "E347FE568902197079700D971CB08D7E87306E3B" : "..\/..",
+    "30463435007E4E0874A8D74BB935D464F3BF40AD" : "Flicks\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Flicks",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Flicks.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:ximin-zhang\/ios-flicks.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "30463435007E4E0874A8D74BB935D464F3BF40AD"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ximin-zhang\/ios-flicks",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E347FE568902197079700D971CB08D7E87306E3B"
+    }
+  ]
+}

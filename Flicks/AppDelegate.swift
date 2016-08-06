@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let iconImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+//        iconImageView.contentMode = .ScaleAspectFit
+        let image = UIImage(named: "IconList")
+        iconImageView.image = image
+
+
         
         // Set up the first View Controller
         let topRatedNaviController = storyboard.instantiateViewControllerWithIdentifier("MoviesNaviController") as! UINavigationController
@@ -26,23 +33,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         topRatedViewController.endpoint = "top_rated"
         topRatedNaviController.tabBarItem.title = "Top Rated"
         topRatedNaviController.tabBarItem.image = UIImage(named: "IconTopRated.png")
-        
+        topRatedNaviController.navigationBar.setBackgroundImage(UIImage(named: "AppBkg"), forBarMetrics: .Default)
+        topRatedNaviController.navigationItem.titleView = iconImageView
+        topRatedNaviController.navigationItem.title = "NOOK"
+
         // Set up the second View Controller
         let nowPlayingNaviController = storyboard.instantiateViewControllerWithIdentifier("MoviesNaviController") as! UINavigationController
         let nowPlayingViewController = nowPlayingNaviController.topViewController as! MoviesViewController
         nowPlayingViewController.endpoint = "now_playing"
         nowPlayingNaviController.tabBarItem.title = "Now Playing"
         nowPlayingNaviController.tabBarItem.image = UIImage(named: "IconNow.png")
-        // nowPlayingNaviController.navigationBar.barTintColor = UIColor(hue: 0.8861, saturation: 0.01, brightness: 0.91, alpha: 0.3)
-        
+//         nowPlayingNaviController.navigationBar.barTintColor = UIColor(hue: 0.8861, saturation: 0.01, brightness: 0.91, alpha: 0.3)
+        nowPlayingNaviController.navigationBar.setBackgroundImage(UIImage(named: "AppBkg"), forBarMetrics: .Default)
+        nowPlayingNaviController.navigationItem.titleView = iconImageView
+        nowPlayingNaviController.navigationItem.title = "NOOK"
+
+        // Tab background color
+        UITabBar.appearance().tintColor = UIColor.whiteColor()
+        UITabBar.appearance().barTintColor = UIColor.blackColor()
+        UITabBar.appearance().translucent = true
+//        UITabBar.appearance().alpha = 0.9
+
+
+
         // Set up the Tab Bar Controller to have two tabs
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [topRatedNaviController, nowPlayingNaviController]
+
         
         
         // Make the Tab Bar Controller the root view controller
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
+        
+        var categoryError :NSError?
+        var success: Bool
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            success = true
+        } catch let error as NSError {
+            categoryError = error
+            success = false
+        }
+        
+        if !success {
+            print("AppDelegate Debug - Error setting AVAudioSession category.  Because of this, there may be no sound. \(categoryError!)")
+        }
+
         
         return true
     }

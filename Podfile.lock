@@ -14,16 +14,27 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - Brightcove-Player-SDK (5.1.2):
+    - Brightcove-Player-SDK/default (= 5.1.2)
+  - Brightcove-Player-SDK/default (5.1.2)
   - MBProgressHUD (1.0.0)
+  - Player (0.1.1)
+  - youtube-parser (0.2.3)
 
 DEPENDENCIES:
   - AFNetworking
+  - Brightcove-Player-SDK
   - MBProgressHUD
+  - Player
+  - youtube-parser
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  Brightcove-Player-SDK: 6967234f81cd0083042b7f4b477bfaad80fd5a33
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  Player: 575e1e8cde1e6b7cd62d6d6bc06e492d02e62b9e
+  youtube-parser: 4e2bd89c8884c35eb17c3b51cfcdad272611d7be
 
-PODFILE CHECKSUM: 7b193948662ac4503b2f3446e95f05086df9b939
+PODFILE CHECKSUM: 3ceb80975ed7cb4a3edb674b6e0bae7ce15f9b6d
 
 COCOAPODS: 1.0.1
