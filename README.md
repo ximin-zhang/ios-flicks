@@ -34,7 +34,14 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/LZ6XXb1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+
+
+![flicks-demo-1](https://cloud.githubusercontent.com/assets/20563124/17455983/742b5144-5b7d-11e6-952e-79e8bf2ba25d.gif)
+
+![flicks-demo-2](https://cloud.githubusercontent.com/assets/20563124/17455986/80fa3d9a-5b7d-11e6-808c-5facd4e5fe99.gif)
+
+![flicks-demo-3](https://cloud.githubusercontent.com/assets/20563124/17455989/8c3c6d18-5b7d-11e6-961c-cea163304947.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
